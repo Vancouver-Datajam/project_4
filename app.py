@@ -1,4 +1,6 @@
+from datetime import datetime as dt
 from pathlib import Path
+import re
 
 import dash
 import dash_core_components as dcc
@@ -46,19 +48,26 @@ USER_DATA_FILE = Path(DATA_DIR, "User_WasteData.csv")
 @app.callback(
     dash.dependencies.Output("on-track-button-submit-output", "children"),
     [dash.dependencies.Input("track-button", "n_clicks")],
-    [dash.dependencies.State("plastic-type", "value")],
+    [
+        dash.dependencies.State("plastic-type", "value"),
+        dash.dependencies.State("date-picker", "date"),
+    ],
 )
-def on_track_submit(n_clicks, plastic_type_value):
-    print(f"Tracking! {n_clicks} {plastic_type_value}")
+def on_track_submit(n_clicks, plastic_type_value, date_value):
+    print(f"Entries! [Num Clicks: {n_clicks}] {plastic_type_value} {date_value}")
     if n_clicks is None:
         return ""
 
+    # Parse date string into a date object
+    date_value_obj = dt.strptime(re.split("T| ", date_value)[0], "%Y-%m-%d")
+    # Format it according to our needs: MM/DD/YYYY
+    date_string = date_value_obj.strftime("%m/%d/%Y")
     data = {
         "plastic_family": plastic_type_value,
         "weight_kg": str(utils.get_weight_kg_of_plastic(plastic_type_value)),
         "count": "1",
         # TODO
-        "date": "01/12/2000",
+        "date": date_string,
     }
 
     new_entry = ",".join(data.values())
