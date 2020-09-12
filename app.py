@@ -23,16 +23,9 @@ USER_DATA_FILE = Path(DATA_DIR, "User_WasteData.csv")
 # Our Data Here
 ###############
 user_data_frame = pd.read_csv(USER_DATA_FILE)
-# fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
-fig = px.scatter(
-    data_frame=user_data_frame,
-    x="weight_kg",
-    y="plastic_family",
-    size="count",
-    log_x=True,
-    hover_data=["date"],
-    title="User Plastic Data",
-)
+
+# Graph of User Data
+fig = px.bar(user_data_frame, x="date", y="weight_kg", color="plastic_family")
 
 ###############
 # App Layout
