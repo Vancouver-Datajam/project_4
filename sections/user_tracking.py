@@ -9,6 +9,8 @@ user_tracking_section = html.Div(
         html.P(children="By default you are seeing..."),
         dcc.DatePickerSingle(
             id="date-picker",
+            min_date_allowed=dt(2000, 8, 5),
+            max_date_allowed=dt.today(),
             date=dt.today(),
         ),
         html.P(children="Plastic Waste"),
