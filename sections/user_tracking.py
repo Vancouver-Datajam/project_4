@@ -21,7 +21,7 @@ user_tracking_section = html.Div(
             date=dt.today(),
             style={"margin-bottom": "40px"},
         ),
-        html.Label(children="Plastic Waste", style={"font-weight": "bold"}),
+        html.Label(children="Plastic Waste Type", style={"font-weight": "bold"}),
         # TODO UI looks like this should be a button?
         dcc.RadioItems(
             id="plastic-type",
@@ -39,6 +39,14 @@ user_tracking_section = html.Div(
                 },
                 {"label": "Other", "value": "other"},
             ],
+            style={"margin-bottom": "40px"},
+        ),
+        html.Label(children="Plastic Waste Count", style={"font-weight": "bold"}),
+        dcc.Input(
+            id="count-field",
+            type="number",
+            placeholder=1,
+            min=1,
             style={"margin-bottom": "40px"},
         ),
         html.Button("Track", id="track-button"),
