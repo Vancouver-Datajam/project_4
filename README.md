@@ -1,6 +1,12 @@
 # Foot Print App: Reducing Personal Plastic Waste Footprint
 
-## Team members names
+## Team members
+Katelyn Boughton (Hacker)
+Seung Yun Kim (Mentor)
+Amanda Leslie (Hacker)
+Ore Ogundipe (Team Lead)
+Lien Quach (Hacker)
+Rosalyn Williams (Hacker)
 
 ## Project description
 (adapted from project descriptions provided by organizers)
@@ -39,15 +45,14 @@ For our data sources we have:
 
 ## How to use code in this repository
 
-This script contains code that does <>
-    
-Sample script usage for script my_script.py
+- Install project requirements
+`pip install -r requirements.txt`
 
-    python3 my_script.py <arg1> <arg2>....
-    
-    arg1: is ...
-    arg2: is ...
-    
+- Run Application
+`python app.py`
+
 ## References
 
 1. [Metro Vancouver Study 2018 Vancouver Transfer Station - Single-Use Items Waste Composition Study](http://www.metrovancouver.org/services/solid-waste/SolidWastePublications/2018Single-UseItemsWasteCompositionStudy.pdf)
+2. [Plotly Dash](https://plotly.com/dash/) - Framework for building ML & data science web apps.
+3. [Pandas](https://pandas.pydata.org/) -  Open source data analysis and manipulation tool, built on top of the Python programming language.
