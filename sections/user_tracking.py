@@ -15,18 +15,18 @@ user_tracking_section = html.Div(
         # TODO UI looks like this should be a button?
         dcc.RadioItems(
             options=[
-                {"label": "Film", "value": "Film"},
-                {"label": "Textiles", "value": "Textiles"},
+                {"label": "Film", "value": "film"},
+                {"label": "Textiles", "value": "textiles"},
                 {
-                    "label": "Rigid Beverage Containers",
-                    "value": "Rigid Beverage Containers",
+                    "label": "Rigid Beverage Container",
+                    "value": "rigid beverage container",
                 },
                 {
                     "label": "Rigid Non-Beverage Containers",
-                    "value": "Rigid Non-Beverage Containers",
+                    "value": "rigid non-beverage container",
                 },
-                {"label": "Other", "value": "Other"},
-            ]
+                {"label": "Other", "value": "other"},
+            ],
         ),
         html.Button("Track", id="track"),
     ],
