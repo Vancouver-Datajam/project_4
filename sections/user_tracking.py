@@ -46,6 +46,7 @@ user_tracking_section = html.Div(
             id="count-field",
             type="number",
             placeholder=1,
+            value=1,
             min=1,
             style={"margin-bottom": "40px"},
         ),
