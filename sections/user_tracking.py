@@ -14,6 +14,7 @@ user_tracking_section = html.Div(
         html.P(children="Plastic Waste"),
         # TODO UI looks like this should be a button?
         dcc.RadioItems(
+            id="plastic-type",
             value="film",
             options=[
                 {"label": "Film", "value": "film"},
@@ -29,7 +30,8 @@ user_tracking_section = html.Div(
                 {"label": "Other", "value": "other"},
             ],
         ),
-        html.Button("Track", id="track"),
+        html.Button("Track", id="track-button"),
+        html.P(id="on-track-button-submit-output", children=""),
     ],
     style={"margin-right": "50px"},
 )
