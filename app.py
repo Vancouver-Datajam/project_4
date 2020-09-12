@@ -73,7 +73,10 @@ def on_track_submit(n_clicks, plastic_type_value, date_value, count_value):
     with open(USER_DATA_FILE, "a") as f:
         f.write(f"{new_entry}\n")
 
-    return "Tracked!"
+    return f"""
+        Recorded {count_value} {plastic_type_value} 
+        (estimated {weight_kg_total_str} kg) for {date_string}
+    """
 
 
 if __name__ == "__main__":
