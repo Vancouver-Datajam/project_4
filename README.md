@@ -1,13 +1,5 @@
 # Foot Print App: Reducing Personal Plastic Waste Footprint
 
-## Team members
-Katelyn Boughton (Hacker)
-Seung Yun Kim (Mentor)
-Amanda Leslie (Hacker)
-Ore Ogundipe (Team Lead)
-Lien Quach (Hacker)
-Rosalyn Williams (Hacker)
-
 ## Project description
 (adapted from project descriptions provided by organizers)
 
@@ -22,6 +14,14 @@ Our goal is to create an application that helps users to track and reduce their 
 For our data sources we have:
 - Metro Vancouver Study 2018 Vancouver Transfer Station - Combined Waste Sort Results.
 - We can also supplement these data sources with any suggestions we come up with as a team.
+
+## Team members
+- Katelyn Boughton (Hacker)
+- Seung Yun Kim (Mentor)
+- Amanda Leslie (Hacker)
+- Ore Ogundipe (Team Lead)
+- Lien Quach (Hacker)
+- Rosalyn Williams (Hacker)
 
 ## Datajam Schedule
 | Time | Description |
