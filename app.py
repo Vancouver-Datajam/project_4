@@ -60,7 +60,7 @@ def on_track_submit(n_clicks, plastic_type_value, date_value, count_value):
 
     weight_kg_plastic_type = utils.get_weight_kg_of_plastic(plastic_type_value)
     weight_kg_total = weight_kg_plastic_type * count_value
-    # Rounding off to 4 decimal places
+    # Rounding off to 3 decimal places
     weight_kg_total_str = "{0:.3f}".format(weight_kg_total)
     data = {
         "plastic_family": plastic_type_value,
