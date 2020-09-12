@@ -8,10 +8,11 @@ def graph_section(fig):
             html.H1(children="Hello Graphs"),
             html.Div(
                 children="""
-            Dash: A Graphs here
+            [ CONTENT / CONTROLS HERE ]
         """
             ),
             # TODO GRAPH HERE
-            # dcc.Graph(id="example-graph", figure=fig),
+            dcc.Graph(id="example-graph", figure=fig),
         ],
+        style={"width": "100%"},
     )
