@@ -16,18 +16,23 @@ external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
+DATA_DIR = Path(__file__).parent / "data"
+USER_DATA_FILE = Path(DATA_DIR, "User_WasteData.csv")
+
 ###############
 # Our Data Here
 ###############
-df = pd.DataFrame(
-    {
-        "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-        "Amount": [4, 1, 2, 2, 4, 5],
-        "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"],
-    }
+user_data_frame = pd.read_csv(USER_DATA_FILE)
+# fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
+fig = px.scatter(
+    data_frame=user_data_frame,
+    x="weight_kg",
+    y="plastic_family",
+    size="count",
+    log_x=True,
+    hover_data=["date"],
+    title="User Plastic Data",
 )
-
-fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
 
 ###############
 # App Layout
@@ -39,10 +44,6 @@ app.layout = html.Div(
     ],
     style={"display": "flex", "margin": "50px"},
 )
-
-
-DATA_DIR = Path(__file__).parent / "data"
-USER_DATA_FILE = Path(DATA_DIR, "User_WasteData.csv")
 
 
 @app.callback(
