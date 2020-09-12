@@ -23,7 +23,7 @@ USER_DATA_FILE = Path(DATA_DIR, "User_WasteData.csv")
 # Our Data Here
 ###############
 user_data_frame = pd.read_csv(USER_DATA_FILE)
-
+user_data_frame["date"] = pd.to_datetime(user_data_frame["date"], format="%m/%d/%Y")
 # Graph of User Data
 fig = px.bar(user_data_frame, x="date", y="weight_kg", color="plastic_family")
 
