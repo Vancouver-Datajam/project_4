@@ -8,8 +8,7 @@ user_tracking_section = html.Div(
         html.H1(children="Plastic Footprint"),
         html.P(
             children="""
-            By default you are seeing a graph of Vancouver's Plastic Waste.
-             Track your plastic waste to see how you compare with the city.
+            Track your plastic waste to see how you compare with the city.
         """,
             style={"margin-bottom": "40px"},
         ),
