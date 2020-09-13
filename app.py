@@ -26,14 +26,13 @@ VANCITY_DATA_FILE = Path(DATA_DIR, "MetroVan_WasteCompData_2018.csv")
 user_data_frame = pd.read_csv(USER_DATA_FILE)
 vancity_data_frame = pd.read_csv(VANCITY_DATA_FILE)  #-- Contains City of Vancouver Waste data from 2018
 
-
-user_data_frame["date"] = pd.to_datetime(user_data_frame["date"], format="%m/%d/%Y")
 # Graph of User Data
-fig = px.bar(user_data_frame, x="date", y="weight_kg", color="plastic_family")
+user_data_frame["date"] = pd.to_datetime(user_data_frame["date"], format="%m/%d/%Y")
+user_plastic_breakdown = px.bar(user_data_frame, x="date", y="weight_kg", color="plastic_family")
 
 # Comparison Graph
 currentday = dt.date(dt.now())
-user_today = user_data_frame.tail(5)
+user_today = user_data_frame.tail(5) # to get the last 5 entered records
 
 vancity_families = vancity_data_frame.loc[(vancity_data_frame['source_type'] == 'multi family') | (vancity_data_frame['source_type'] == 'single family')]   #-- Extract only Single/Multi family data
 families_boxline = px.box(vancity_families, x="plastic_family", y="weight_kg", color="source_type")     #-- Genereate boxplot with Vancouver data
@@ -51,11 +50,34 @@ families_boxline.update_layout(    #-- Update graph labels
 app.layout = html.Div(
     children=[
         user_tracking_section,
-        #graph_section(fig),
-        graph_section(families_boxline),
+        html.Div(className="graphWorkspace", children=[
+             html.H1(children="Visualize Your Plastic Footprint"),
+            html.Div(
+                children=[
+                    html.Button("View My Plastic Breakdown", id="myPlastic-button", n_clicks=0),
+                    html.Button("Compare with Vancouverite", id="compare-button", n_clicks=0)
+                    ]),
+                graph_section(user_plastic_breakdown)
+            ], style={"display": "flex", "flex-direction": "column", "width": "100%"}),
     ],
-    style={"display": "flex", "margin": "50px"},
+    style={"display": "flex", "margin": "50px"}
 )
+
+#callback for graph toggle.
+@app.callback(
+    dash.dependencies.Output("example-graph", "figure" ),
+    [dash.dependencies.Input("myPlastic-button", 'n_clicks'),
+     dash.dependencies.Input("compare-button", 'n_clicks')
+    ]
+)
+def update_output(btn1, btn2):
+    changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
+    displayFig = user_plastic_breakdown
+    if 'myPlastic-button' in changed_id:
+        displayFig = user_plastic_breakdown
+    elif 'compare-button' in changed_id:
+        displayFig = families_boxline
+    return displayFig
 
 
 @app.callback(
