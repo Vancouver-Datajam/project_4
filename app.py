@@ -26,6 +26,7 @@ user_data_frame = pd.read_csv(USER_DATA_FILE)
 
 # Graph of User Data
 fig = px.bar(user_data_frame, x="date", y="weight_kg", color="plastic_family")
+fig2 = px.bar(user_data_frame, x="date", y="weight_kg", color="weight_kg")
 
 ###############
 # App Layout
@@ -33,10 +34,35 @@ fig = px.bar(user_data_frame, x="date", y="weight_kg", color="plastic_family")
 app.layout = html.Div(
     children=[
         user_tracking_section,
-        graph_section(fig),
+        html.Div(className="graphWorkspace", children=[
+             html.H1(children="Visualize Your Plastic Footprint"),
+            html.Div(
+                children=[
+                    html.Button("View My Plastic Breakdown", id="myPlastic-button", n_clicks=0),
+                    html.Button("Compare with Vancouverite", id="compare-button", n_clicks=0)
+                    ]),
+            graph_section(fig)
+            
+            ], style={"display": "flex", "flex-direction": "column", "width": "100%"}),
     ],
     style={"display": "flex", "margin": "50px"},
 )
+
+#callback for graph toggle.
+@app.callback(
+    dash.dependencies.Output("example-graph", "figure" ),
+    [dash.dependencies.Input("myPlastic-button", 'n_clicks'),
+     dash.dependencies.Input("compare-button", 'n_clicks')
+    ]
+)
+def update_output(btn1, btn2):
+    changed_id = [p['prop_id'] for p in dash.callback_context.triggered][0]
+    displayFig = fig
+    if 'myPlastic-button' in changed_id:
+        displayFig = fig
+    elif 'compare-button' in changed_id:
+        displayFig = fig2
+    return displayFig
 
 
 @app.callback(
