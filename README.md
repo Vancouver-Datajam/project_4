@@ -20,7 +20,7 @@ For our data sources we have:
 ## Team members
 - [Katelyn Boughton (Hacker)](https://www.linkedin.com/in/katelyn-boughton/)
 - [Seung Yun Kim (Mentor)](https://www.linkedin.com/in/seungyun-kim/)
-- [Amanda Leslie (Hacker)](https://www.linkedin.com/in/amanda-l-9186433a/)
+- [Amanda Leslie (Hacker)](www.linkedin.com/in/leslieamanda)
 - [Ore Ogundipe (Team Lead)](https://oreogundipe.dev/whoami)
 - [Lien Quach (Hacker)](https://www.linkedin.com/in/lienq/)
 - [Rosalyn Williams (Hacker)](https://github.com/paxcodes)
