@@ -18,14 +18,32 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 DATA_DIR = Path(__file__).parent / "data"
 USER_DATA_FILE = Path(DATA_DIR, "User_WasteData.csv")
+VANCITY_DATA_FILE = Path(DATA_DIR, "MetroVan_WasteCompData_2018.csv")
 
 ###############
 # Our Data Here
 ###############
 user_data_frame = pd.read_csv(USER_DATA_FILE)
+vancity_data_frame = pd.read_csv(VANCITY_DATA_FILE)  #-- Contains City of Vancouver Waste data from 2018
+
+
 user_data_frame["date"] = pd.to_datetime(user_data_frame["date"], format="%m/%d/%Y")
 # Graph of User Data
 fig = px.bar(user_data_frame, x="date", y="weight_kg", color="plastic_family")
+
+# Comparison Graph
+currentday = dt.date(dt.now())
+user_today = user_data_frame.tail(5)
+
+vancity_families = vancity_data_frame.loc[(vancity_data_frame['source_type'] == 'multi family') | (vancity_data_frame['source_type'] == 'single family')]   #-- Extract only Single/Multi family data
+families_boxline = px.box(vancity_families, x="plastic_family", y="weight_kg", color="source_type")     #-- Genereate boxplot with Vancouver data
+families_boxline.add_scatter(y=user_today['weight_kg'], x=user_today['plastic_family'], name="user")    #-- Add scatter plots with data provided by user
+families_boxline.update_layout(    #-- Update graph labels
+    title="Plastic Waste Comparison",
+    xaxis_title="Plastic Waste Type",
+    yaxis_title="Plastic Waste in Kg",
+    legend_title="Source"
+)
 
 ###############
 # App Layout
@@ -33,7 +51,8 @@ fig = px.bar(user_data_frame, x="date", y="weight_kg", color="plastic_family")
 app.layout = html.Div(
     children=[
         user_tracking_section,
-        graph_section(fig),
+        #graph_section(fig),
+        graph_section(families_boxline),
     ],
     style={"display": "flex", "margin": "50px"},
 )
