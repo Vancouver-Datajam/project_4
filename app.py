@@ -26,17 +26,24 @@ VANCITY_DATA_FILE = Path(DATA_DIR, "MetroVan_WasteCompData_2018.csv")
 user_data_frame = pd.read_csv(USER_DATA_FILE)
 vancity_data_frame = pd.read_csv(VANCITY_DATA_FILE)  #-- Contains City of Vancouver Waste data from 2018
 
+# get plastic totals
+user_plastic_weight_total = user_data_frame.groupby('plastic_family', as_index=False)['weight_kg'].sum()
+user_plastic_weight_total = user_plastic_weight_total.reindex([0,4,2,3,1])
+
 # Graph of User Data
 user_data_frame["date"] = pd.to_datetime(user_data_frame["date"], format="%m/%d/%Y")
 user_plastic_breakdown = px.bar(user_data_frame, x="date", y="weight_kg", color="plastic_family")
+user_plastic_breakdown.update_layout(    #-- Update graph labels
+    title="Your Plastic Waste Breakdown",
+    xaxis_title="Date",
+    yaxis_title="Plastic Waste in Kg",
+    legend_title="Plastic Type"
+)
 
 # Comparison Graph
-currentday = dt.date(dt.now())
-user_today = user_data_frame.tail(5) # to get the last 5 entered records
-
 vancity_families = vancity_data_frame.loc[(vancity_data_frame['source_type'] == 'multi family') | (vancity_data_frame['source_type'] == 'single family')]   #-- Extract only Single/Multi family data
 families_boxline = px.box(vancity_families, x="plastic_family", y="weight_kg", color="source_type")     #-- Genereate boxplot with Vancouver data
-families_boxline.add_scatter(y=user_today['weight_kg'], x=user_today['plastic_family'], name="user")    #-- Add scatter plots with data provided by user
+families_boxline.add_scatter(y=user_plastic_weight_total['weight_kg'], x=user_plastic_weight_total['plastic_family'], name="user")    #-- Add scatter plots with data provided by user
 families_boxline.update_layout(    #-- Update graph labels
     title="Plastic Waste Comparison",
     xaxis_title="Plastic Waste Type",

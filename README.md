@@ -1,5 +1,7 @@
 # Foot Print App: Reducing Personal Plastic Waste Footprint
 
+![Screenshot of Application Interface](./assets/demo.jpg)
+
 ## Project description
 (adapted from project descriptions provided by organizers)
 
@@ -16,12 +18,12 @@ For our data sources we have:
 - We can also supplement these data sources with any suggestions we come up with as a team.
 
 ## Team members
-- Katelyn Boughton (Hacker)
-- Seung Yun Kim (Mentor)
-- Amanda Leslie (Hacker)
-- Ore Ogundipe (Team Lead)
-- Lien Quach (Hacker)
-- Rosalyn Williams (Hacker)
+- [Katelyn Boughton (Hacker)](https://www.linkedin.com/in/katelyn-boughton/)
+- [Seung Yun Kim (Mentor)](https://www.linkedin.com/in/seungyun-kim/)
+- [Amanda Leslie (Hacker)](https://www.linkedin.com/in/amanda-l-9186433a/)
+- [Ore Ogundipe (Team Lead)](https://oreogundipe.dev/whoami)
+- [Lien Quach (Hacker)](https://www.linkedin.com/in/lienq/)
+- [Rosalyn Williams (Hacker)](https://github.com/paxcodes)
 
 ## Datajam Schedule
 | Time | Description |
